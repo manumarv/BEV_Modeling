@@ -23,7 +23,7 @@ params = table2struct(T(strcmp(T.Make,'Renault Kangoo -E'), :));
 %PARAMS INIT
 
 M_glider    = params.VehicleMass_lbs_/2.205;  % glider mass, kg
-M_driver    = 70; % driver mass kg
+M_driver    = 80; % driver mass kg
 C_D         = params.Cd;    % drag coefficient
 C_0         = params.Cr;   % rolling resistance coefficient
 A_F         = params.FrontalArea_m2_;    % frontal area, m^2
