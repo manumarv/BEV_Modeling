@@ -1,0 +1,2 @@
+drivecycleData = readtable('C:\Users\cob_e\OneDrive - purdue.edu\Mywork\PhD Thesis\Thesis Defense Proposal\AED\Autonomous Eco Driving for  Battery Electric Delivery Vehicle\Energy Modeling\Drive Cycles\all_processed_drive_cycles\2006-03-21.csv');
+drivecycleData = table2array(drivecycleData(:,2:5));
