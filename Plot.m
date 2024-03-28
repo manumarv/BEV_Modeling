@@ -52,7 +52,10 @@ plot(out.Battery_Current.Data);
 title('Battery Current')
 ylabel('A');
 
-
+figure(6);
+plot(out.SOC.Data);
+title('State of Charge')
+ylabel('SOC');
 
 Summary = categorical(["Tractive Energy (kWh)"; "Aerodynamic Lost (kWh)"; "Rolling Resistance Loss(kWh)"; "Miles Traveled"]);
 Results = [round(out.Tractive_Energy.Data(3556),2);
