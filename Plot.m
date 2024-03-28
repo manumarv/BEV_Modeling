@@ -50,7 +50,7 @@ ylabel('RPM');
 figure(5);
 plot(out.Battery_Current.Data);
 title('Battery Current')
-ylabel('W');
+ylabel('A');
 
 
 
