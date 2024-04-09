@@ -16,9 +16,29 @@ drivecycleData = table2array(drivecycleData(:,2:5));
 %Blue Arc EV
 %Ford
 %Mercedes-Benz
+ % Your calculated optimal gear sequence array
 
 T = readtable('Vehicles_Params_Summary.xlsx');
 params = table2struct(T(strcmp(T.Make,'Renault Kangoo -E'), :));
+
+load('optimal_gear_sequence.mat');
+optimal_gear_indices = optimal_gear_sequence;
+
+gear_ratios = [4.1, 1.5];
+
+optimal_gear_ratios = (gear_ratios(optimal_gear_indices)).';
+
+% Define your simulation time step
+dt = 0.1;  % Adjust dt to your Simulink model's time step
+simulation_time = 0:dt:(length(optimal_gear_ratios)-1)*dt;
+
+% Combine the time and gear ratio arrays for the From Workspace block
+%gear_ratio_input = [simulation_time', optimal_gear_ratios'];
+
+% Save the variable to the MATLAB workspace (it should be available to Simulink now)
+%assignin('base', 'gear_ratio_input', gear_ratio_input);
+
+
 
 %PARAMS INIT
 
