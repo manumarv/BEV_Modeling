@@ -57,11 +57,12 @@ plot(out.SOC.Data);
 title('State of Charge')
 ylabel('SOC');
 
-Summary = categorical(["Tractive Energy (kWh)"; "Aerodynamic Lost (kWh)"; "Rolling Resistance Loss(kWh)"; "Miles Traveled"]);
+Summary = categorical(["Tractive Energy (kWh)"; "Aerodynamic Lost (kWh)"; "Rolling Resistance Loss(kWh)"; "Miles Traveled";"Battery Energy (kWh)"]);
 Results = [round(out.Tractive_Energy.Data(3556),2);
             round(out.Aero_Force_Loss.Data(3556),2);
             round(out.Rolling_resistance_loss.Data(3556),2); 
-            round(out.Miles_Traveled.Data(3556),2)];
+            round(out.Miles_Traveled.Data(3556),2);
+            round(out.Battery_Energy.Data(3556),2)];
 
 T = table(Summary,Results)
 

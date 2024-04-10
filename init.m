@@ -24,9 +24,12 @@ params = table2struct(T(strcmp(T.Make,'Renault Kangoo -E'), :));
 load('optimal_gear_sequence.mat');
 optimal_gear_indices = optimal_gear_sequence;
 
-gear_ratios = [4.1, 1.5];
+gear_ratios = [3.5, 1.5];
 
 optimal_gear_ratios = (gear_ratios(optimal_gear_indices)).';
+index_columns=(1:length(optimal_gear_ratios)).';
+
+optimal_gear_ratios = [index_columns,optimal_gear_ratios];
 
 % Define your simulation time step
 dt = 0.1;  % Adjust dt to your Simulink model's time step
