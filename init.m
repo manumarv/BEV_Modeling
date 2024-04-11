@@ -64,5 +64,17 @@ G_elec      = 1; % gear ratio for motor
 rho         = params.AirDensity; % density of air, kg/m^3
 g           = 9.8; % acceleration due to gravity,  m/s^s
 
+
+RPM = [0 1200 2400 3600 4800 6000 7200]; 
+N_m = [235.1 235 234.8 234.6 204.5 161.8 120.6];
+Eff = [90 87.4 92.8 94.8 94.3 92.9 91.9]; 
+Pm_kW = [0 29.5 59 88.4 102.8 101.6 90.9];
+V_rms = [8.5 26.5 50.8 75.1 80.6 80.6 80.6]; 
+
+
+
+efficiency_interp = @(torque) interp1(N_m, Eff, torque, 'linear', 'extrap');
+
+%efficiency_interp(out.Motor_Torque.Data)/100
 %out=sim('powertrain_model',3556);
 %run Plot.m
