@@ -24,7 +24,7 @@ params = table2struct(T(strcmp(T.Make,'Renault Kangoo -E'), :));
 load('optimal_gear_sequence.mat');
 optimal_gear_indices = optimal_gear_sequence;
 
-gear_ratios = [3.5, 1.5];
+gear_ratios = [4.0, 1.5];
 
 optimal_gear_ratios = (gear_ratios(optimal_gear_indices)).';
 index_columns=(1:length(optimal_gear_ratios)).';
@@ -46,7 +46,7 @@ simulation_time = 0:dt:(length(optimal_gear_ratios)-1)*dt;
 %PARAMS INIT
 
 M_glider    = params.VehicleMass_lbs_/2.205;  % glider mass, kg
-M_driver    = 80; % driver mass kg
+M_driver    = 80;           % driver mass kg
 C_D         = params.Cd;    % drag coefficient
 C_0         = params.Cr;   % rolling resistance coefficient
 A_F         = params.FrontalArea_m2_;    % frontal area, m^2
@@ -65,6 +65,7 @@ rho         = params.AirDensity; % density of air, kg/m^3
 g           = 9.8; % acceleration due to gravity,  m/s^s
 
 
+%Motor Specifications
 RPM = [0 1200 2400 3600 4800 6000 7200]; 
 N_m = [235.1 235 234.8 234.6 204.5 161.8 120.6];
 Eff = [90 87.4 92.8 94.8 94.3 92.9 91.9]; 
@@ -73,7 +74,7 @@ V_rms = [8.5 26.5 50.8 75.1 80.6 80.6 80.6];
 
 
 
-efficiency_interp = @(torque) interp1(N_m, Eff, torque, 'linear', 'extrap');
+%efficiency_interp = @(torque) interp1(N_m, Eff, torque, 'linear', 'extrap');
 
 %efficiency_interp(out.Motor_Torque.Data)/100
 %out=sim('powertrain_model',3556);
