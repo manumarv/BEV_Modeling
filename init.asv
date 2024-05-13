@@ -66,12 +66,12 @@ joules_to_kWh   = 0.0000002778;
 
 %% GearBox Tranmission Data Mode
 
-gear_logic_selection = 'optimal'; % Initialize the mode (can be 'optimal' or 'suboptimal')
+gear_logic_selection = 'suboptimal'; % Initialize the mode (can be 'optimal' or 'suboptimal')
 
 if strcmp(gear_logic_selection, 'optimal')
-    gear_ratios = [7.0, 1.5]; % Gear ratios for optimal mode
+    gear_ratios = [3.0, 1.5]; % Gear ratios for optimal mode
 elseif strcmp(gear_logic_selection, 'suboptimal')
-    gear_ratios = [1.5]; % Gear ratio for suboptimal mode
+    gear_ratios = [3.0]; % Gear ratio for suboptimal mode
 else
     gear_ratios = [2.5]; % Default gear ratio if neither optimal nor suboptimal
 end
@@ -92,12 +92,6 @@ optimal_gear_indices = optimal_gear_sequence;
 
 optimal_gear_ratios = (gear_ratios(optimal_gear_indices)).';
 index_columns=(1:length(optimal_gear_ratios)).';
-
-
-if strcmp(gear_logic_selection, 'suboptimal')
-    optimal_gear_ratios = optimal_gear_ratios'; % Gear ratios for optimal mode
-end
-
 
 optimal_gear_ratios = [index_columns,optimal_gear_ratios];
 
