@@ -1,10 +1,6 @@
 clear,clc;
 %% DRIVE CYCLE AND VEHICLE SELECTION
 
-%folderPath = 'C:\Users\cob_e\OneDrive - purdue.edu\Mywork\PhD Thesis\Thesis Defense Proposal\AED\Autonomous Eco Driving for  Battery Electric Delivery Vehicle\Energy Modeling\Drive Cycles\all_processed_drive_cycles'; % Specify the folder path
-%fileName = '2006-03-21.csv'; % Specify the drive cycle name
-%filePath = fullfile(folderPath, fileName); % Construct the full file path
-
 drivecycleData = readtable('2006-03-21.csv');
 drivecycleData = table2array(drivecycleData(:,2:5));
 
@@ -16,8 +12,29 @@ drivecycleData = table2array(drivecycleData(:,2:5));
     %Ford
     %Mercedes-Benz
 
-T = readtable('Vehicles_Params_Summary.xlsx');
-params = table2struct(T(strcmp(T.Make,'Renault Kangoo -E'), :));
+%T = readtable('Vehicles_Params_Summary.xlsx');
+%params = table2struct(T(strcmp(T.Make,'Renault Kangoo -E'), :));
+
+% Load vehicle parameters from Excel file
+filename = 'Vehicles_Params_Summary.xlsx';
+vehicleData = readtable(filename);
+
+% Example of accessing parameters for a specific vehicle
+vehicleName = 'Mercedes-Benz';
+params = table2struct(vehicleData(strcmp(vehicleData.Make, vehicleName), :));
+
+
+
+% vehicles = {'Renault Kangoo -E', 'Toyota_Proace', 'Peugeot E-Boxer', 'Blue Arc EV', 'Ford', 'Mercedes-Benz'};
+% 
+% for k = 1:length(vehicles)
+%     vehicleName = vehicles{k};
+%     params = table2struct(vehicleData(strcmp(vehicleData.Make, vehicleName), :));
+%     display(vehicleName)
+%     % Run simulation or perform calculations with `params`
+% end
+% 
+
 
 speed_vector = (drivecycleData(:,3:3)).';
 acceleration_vector = (drivecycleData(:,4:4)).';
@@ -27,7 +44,7 @@ acceleration_vector = (drivecycleData(:,4:4)).';
 %% PARAMS INIT
 
 % Vehicle Parameters
-m    = params.VehicleMass_lbs_/2.205;  % glider mass, kg
+m           = params.VehicleMass_lbs_/2.205;  % glider mass, kg
 M_driver    = 80;           % driver mass kg
 cd          = params.Cd;    % drag coefficient
 cr          = params.Cr;                    % rolling resistance coefficient
@@ -66,7 +83,7 @@ joules_to_kWh   = 0.0000002778;
 
 %% GearBox Tranmission Data Mode
 
-gear_logic_selection = 'optimal'; % Initialize the mode (can be 'optimal' or 'suboptimal')
+gear_logic_selection = 'suboptimal'; % Initialize the mode (can be 'optimal' or 'suboptimal')
 
 if strcmp(gear_logic_selection, 'optimal')
     gear_ratios = [7.0, 1.5]; % Gear ratios for optimal mode
