@@ -1,8 +1,16 @@
 clear,clc;
 %% DRIVE CYCLE AND VEHICLE SELECTION
 
-drivecycleData = readtable('2006-03-21.csv');
-drivecycleData = table2array(drivecycleData(:,2:5));
+%drivecycleData = readtable('2006-03-21.csv');
+%drivecycleData = table2array(drivecycleData(:,2:5));
+
+drivecycleData = readtable('extracted_data_filtered.csv');
+drivecycleData = table2array(drivecycleData(:,1:2));
+
+speed_vector = (drivecycleData(:,2:2)).';
+acceleration_vector = (drivecycleData(:,4:4)).';
+
+
 
 %Available Vehicles: 
     %Renault Kangoo -E
@@ -24,7 +32,6 @@ vehicleName = 'Mercedes-Benz';
 params = table2struct(vehicleData(strcmp(vehicleData.Make, vehicleName), :));
 
 
-
 % vehicles = {'Renault Kangoo -E', 'Toyota_Proace', 'Peugeot E-Boxer', 'Blue Arc EV', 'Ford', 'Mercedes-Benz'};
 % 
 % for k = 1:length(vehicles)
@@ -33,11 +40,11 @@ params = table2struct(vehicleData(strcmp(vehicleData.Make, vehicleName), :));
 %     display(vehicleName)
 %     % Run simulation or perform calculations with `params`
 % end
-% 
+ 
 
 
-speed_vector = (drivecycleData(:,3:3)).';
-acceleration_vector = (drivecycleData(:,4:4)).';
+
+
 
 
 
@@ -83,7 +90,7 @@ joules_to_kWh   = 0.0000002778;
 
 %% GearBox Tranmission Data Mode
 
-gear_logic_selection = 'optimal'; % Initialize the mode (can be 'optimal' or 'suboptimal')
+gear_logic_selection = 'suboptimal'; % Initialize the mode (can be 'optimal' or 'suboptimal')
 
 if strcmp(gear_logic_selection, 'optimal')
     gear_ratios = [7.0, 1.5]; % Gear ratios for optimal mode

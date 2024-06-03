@@ -1,7 +1,7 @@
 clear,clc;
 %% DRIVE CYCLE AND VEHICLE SELECTION
 
-drivecycleData = readtable('2006-03-21.csv');
+drivecycleData = readtable('extracted_data_filtered.csv');
 drivecycleData = table2array(drivecycleData(:,2:5));
 
 %Available Vehicles: 
