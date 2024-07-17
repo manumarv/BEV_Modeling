@@ -60,12 +60,6 @@ dt = 0.1; % Define your simulation time step
 modelName = "powertrain_model";
 load_system(modelName);
 
-%Initializa structures to store torque data
-
-torque_data_optimal = cell(length(vehicleList),1);
-torque_data_suboptimal = cell(length(vehicleList),1);
-
-
 % Loop through each vehicle and run the simulation
 for i = 1:length(vehicleList)
     vehicleName = vehicleList{i};
@@ -102,19 +96,8 @@ for i = 1:length(vehicleList)
     simout = sim(modelName);
 
     % Store Motor and Battery Energy
-
     motor_energy_all(i) = simout.motor_energy.Data(end);
     battery_energy_all(i) = simout.Battery_Energy.Data(end);
-
-
-    if strcmp(gear_logic_selection, 'optimal')
-        torque_data_optimal{i} = simout.Motor_Torque.Data;
-    elseif strcmp(gear_logic_selection,'suboptimal')
-        torque_data_suboptimal{i} = simout.Motor_Torque.Data;
-    end 
-
-
-    
 end
 
 % Display results
